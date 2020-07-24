@@ -24,7 +24,9 @@ Repackage the VM into a New Vagrant Box
 vagrant package --output mynew.box
 ```
 
-Upload box / create new version etc. in browser: https://app.vagrantup.com/boxes/new
+Upload box / create new version etc. in browser: https://app.vagrantup.com/boxes/new / https://app.vagrantup.com/sogis/boxes/ubuntu-qgis-2.18/versions/new 
+
+**Do not forget to release the new version.**
 
 ## Use Box
 
