@@ -83,9 +83,20 @@ Vagrant.configure("2") do |config|
     apt-get install -y x2goserver x2goserver-xsession
     apt-get install -y xfce4 xfce4-whiskermenu-plugin xfce4-terminal thunar-archive-plugin gedit
     apt-get install -y gnupg software-properties-common
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51F523511C7028C3
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F7E06F06199EF2F2
     add-apt-repository "deb     https://qgis.org/ubuntu `lsb_release -c -s` main"
     apt-get update
     apt-get install -y qgis
+    apt-get install -y apt-transport-https ca-certificates curl gnupg
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    apt-get update
+    apt-get install -y docker-ce docker-ce-cli containerd.io
+    curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    usermod -aG docker vagrant
+    su - vagrant -c 'curl -s get.sdkman.io | bash'
     SHELL
 end
